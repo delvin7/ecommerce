@@ -1,0 +1,88 @@
+{% load static %}
+
+<div class="small-container cart-page">
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+
+        <!-- Product 1 -->
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="{% static 'images/buy-1.jpg' %}" alt="Red Printed T-Shirt">
+                    <div>
+                        <p>Red Printed T-Shirt</p>
+                        <small>Price: $50.00</small>
+                        <br>
+                        <a href="#" class="remove-item">Remove</a>
+                    </div>
+                </div>
+            </td>
+            <td><input type="number" min="1" value="1"></td>
+            <td>$50.00</td>
+        </tr>
+
+        <!-- Product 2 -->
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="{% static 'images/buy-2.jpg' %}" alt="HRX Sports Shoes">
+                    <div>
+                        <p>HRX Sports Shoes</p>
+                        <small>Price: $50.00</small>
+                        <br>
+                        <a href="#" class="remove-item">Remove</a>
+                    </div>
+                </div>
+            </td>
+            <td><input type="number" min="1" value="1"></td>
+            <td>$50.00</td>
+        </tr>
+
+        <!-- Product 3 -->
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="{% static 'images/buy-3.jpg' %}" alt="Gray Jogger Pants">
+                    <div>
+                        <p>Gray Jogger Pants</p>
+                        <small>Price: $50.00</small>
+                        <br>
+                        <a href="#" class="remove-item">Remove</a>
+                    </div>
+                </div>
+            </td>
+            <td><input type="number" min="1" value="1"></td>
+            <td>$50.00</td>
+        </tr>
+    </table>
+
+    <!-- Cart Total Section -->
+    <div class="total-price">
+        <table>
+            <tr>
+                <td>Subtotal</td>
+                <td>$200.00</td>
+            </tr>
+            <tr>
+                <td>Tax</td>
+                <td>$35.00</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>$230.00</td>
+            </tr>
+            </table>
+        </div>
+        <div class="checkout" style="display:flex; justify-content:flex-end; margin-top:1rem;">
+            <button type="button" class="btn" aria-label="Proceed to checkout">Checkout</button>
+        </div>
+        
+         
+    
+
+
+</div>
