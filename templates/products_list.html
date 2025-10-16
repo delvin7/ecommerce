@@ -10,7 +10,7 @@
     <div class="row">
         {% for product in product_row %}
         <div class="col-4">
-            <a href="{% url 'product_detail' %}">
+            <a href="{% url 'product_detail' product.id %}">
                 {% if product.image %}
                     <img src="{{ product.image.url }}" alt="{{ product.name }}">
                 {% else %}

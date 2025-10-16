@@ -409,11 +409,22 @@ th:last-child{
 .form-btn{
     display: inline-block;
 }
+.message-container{
+   background: #dd0808;
+    width: 300px;
+    height: fit-content;
+    position: relative;
+    text-align: center;
+    padding: 20px 0;
+    margin: auto;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
 .form-container form{
     max-width: 300px;
     padding: 0 20px;
     position: absolute;
-    top: 130px;
+    top: 89px;
     transition: transform 1s;
 }
 form input{
@@ -501,3 +512,4 @@ form a{
         display: none;
     }
 }
+

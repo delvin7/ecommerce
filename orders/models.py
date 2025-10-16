@@ -12,12 +12,14 @@ class order(models.Model):
     order_rejected=4
     status_choice=((order_confirmed,'Order Confirmed'),(order_processed,'Order Processed'),(order_delivered,'Order Delivered'),(order_rejected,'Order Rejected' ))
     order_status=models.IntegerField(choices=status_choice,default=cart_stage) 
-
+    total = models.FloatField(default=0) 
 
     owner=models.ForeignKey('customers.customer',on_delete=models.SET_NULL,related_name='cart_owner', null=True)
     delete_status=models.IntegerField(choices=delete_choices,default=live)    
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return f"Order {self.id} - Owner: {self.owner.name if self.owner else 'None'} - Status: {self.get_order_status_display()}"
 
  
     
@@ -25,3 +27,4 @@ class orderedItems(models.Model):
     product=models.ForeignKey('products.product',related_name='cart_product' ,on_delete=models.SET_NULL, null=True)
     quantity=models.IntegerField(default=1)
     owner=models.ForeignKey(order,on_delete=models.CASCADE,related_name='added_items')
+

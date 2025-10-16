@@ -1,8 +1,8 @@
-# products/urls.py
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('account', views.show_account, name='account'),
-    
+    path('', views.show_account, name='account'),
+    path('home/', views.home, name='home'),
+    path('logout/', views.logout_user, name='logout'),
 ]

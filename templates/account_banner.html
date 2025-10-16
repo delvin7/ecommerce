@@ -1,34 +1,66 @@
 {% load static %}
+
 <div class="account-page">
-        <div class="container">
-            <div class="row">
-                <div class="col-2">
-                    <img src="{% static 'images/image1.png' %}" width="100%">
-                </div>
-                <div class="col-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <img src="{% static 'images/image1.png' %}" width="100%">
+            </div>
+            <div class="col-2">
+
+                <!-- Display messages -->
+                {% if messages %}
+                    <div class="message-container">
+                        {% for message in messages %}
+                            <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                    <!-- Logged-in view -->
+                    <div class="account-info">
+                        <h2>Welcome, {{ user.username }}!</h2>
+                        {% if profile %}
+                            <p><strong>Email:</strong> {{ user.email }}</p>
+            
+                        {% endif %}
+                        <a href="{% url 'logout' %}" class="btn">Logout</a>
+                    </div>
+                {% else %}
+                    <!-- Login/Register forms -->
                     <div class="form-container">
                         <div class="form-btn">
                             <span onclick="login()">Login</span>
                             <span onclick="register()">Register</span>
                             <hr id="Indicator">
                         </div>
-                        <form id="LoginForm" method="post" action="">
+
+                        <!-- Login Form -->
+                        <form id="LoginForm" method="post" enctype="multipart/form-data" action="">
                             {% csrf_token %}
-                            <input type="text" name="username" placeholder="Username">
-                            <input type="password" name="password" placeholder="Password">
-                            <button type="submit" class="btn">Login</button>
-                            <a href="">Forget Password</a>
+                            <input type="text" name="username" required minlength="3" placeholder="Username">
+                            <input type="password" name="password" required placeholder="Password">
+                            <button type="submit" name="login" class="btn">Login</button>
+                            <a href="#" onclick="alert('Forget password feature coming soon!')">Forget Password?</a>
                         </form>
 
-                        <form id="RegForm" method="post" action="">
+                        <!-- Register Form -->
+                        <form id="RegForm" method="post" enctype="multipart/form-data" action="">
                             {% csrf_token %}
-                            <input type="text" name="username" placeholder="Username">
-                            <input type="email" name="email" placeholder="Email">
-                            <input type="password" name="password" placeholder="Password">
-                            <button type="submit" class="btn">Register</button>
+                            <input type="text" name="username" required placeholder="Username">
+                            <input type="email" name="email" required placeholder="Email">
+                            <input type="password" name="password" required placeholder="Password">
+                            <input type="text" name="phone" required placeholder="Phone Number">
+                            <input type="text" name="address" required placeholder="Address">
+                            <button type="submit" name="register" class="btn">Register</button>
                         </form>
                     </div>
-                </div>
+                {% endif %}
+
             </div>
         </div>
     </div>
+</div>
