@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    container_name: django_app
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app               # Syncs local code with container
+      - sqlite_data:/app/db  # Persists SQLite database
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - django_network       # Connects to custom network
+
+volumes:
+  sqlite_data:
+
+networks:
+  django_network:
+    driver: bridge           # Default bridge network for internal communication
