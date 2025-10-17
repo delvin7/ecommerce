@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['ecommerce-2siq.onrender.com', 'localhost', '127.0.0.1']
 
+CSRF_TRUSTED_ORIGINS = ['https://ecommerce-2siq.onrender.com']
 
 
 # Application definition
