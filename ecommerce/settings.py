@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-7+@9991v9=j+%4jy)$1_uou3z*9y)e9#jt0w$&!5xt=b6cq3pj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ecommerce-2siq.onrender.com', 'localhost', '127.0.0.1']
+
 
 CSRF_TRUSTED_ORIGINS = ['https://ecommerce-2siq.onrender.com']
 
@@ -81,10 +81,15 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myprojectdb',
+        'USER': 'postgres',
+        'PASSWORD': '12345678',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation

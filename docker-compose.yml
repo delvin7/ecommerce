@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 
 services:
   web:
@@ -6,18 +6,34 @@ services:
     container_name: django_app
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/app               # Syncs local code with container
-      - sqlite_data:/app/db  # Persists SQLite database
+      - .:/app
     ports:
       - "8000:8000"
     environment:
-      - PYTHONUNBUFFERED=1
+      - DATABASE_HOST=db
+      - DATABASE_NAME=myprojectdb
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=12345678
+    depends_on:
+      - db
     networks:
-      - django_network       # Connects to custom network
+      - django_network
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: myprojectdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+    networks:
+      - django_network
 
 volumes:
-  sqlite_data:
+  postgres_data:
 
 networks:
   django_network:
-    driver: bridge           # Default bridge network for internal communication
+    driver: bridge

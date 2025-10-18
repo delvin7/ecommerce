@@ -24,7 +24,7 @@ def show_cart(request):
     return render(request, 'cart.html', context)
 
     
-
+@login_required(login_url='account')
 def add_to_cart(request):
     if request.POST:
         user = request.user
@@ -84,7 +84,7 @@ def checkout(request):
         except Exception as e:
             status_messages="You do not have an active order"
             messages.error(request, status_messages)
-    return redirect('cart')
+    return redirect('orders')
 @login_required(login_url='account')
 def show_orders(request):
     user=request.user
