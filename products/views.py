@@ -11,7 +11,7 @@ def index(request):
 def product_list(request):
     
     product_list=product.objects.order_by('-priority').filter(delete_status=1)
-    product_paginator=Paginator(product_list,10)
+    product_paginator=Paginator(product_list,2)
     product_list=product_paginator.get_page(request.GET.get('page'))
     context={'products':product_list}
     return render(request,'products.html',context)
