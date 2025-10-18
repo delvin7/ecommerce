@@ -18,4 +18,5 @@ COPY . .
 EXPOSE 8000
 
 # Run Django app with gunicorn
-CMD ["gunicorn", "ecommerce.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD sh -c "python manage.py migrate --noinput && python manage.py collectstatic --noinput && gunicorn ecommerce.wsgi:application --bind 0.0.0.0:8000"
+
